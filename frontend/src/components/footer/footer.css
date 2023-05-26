@@ -1,0 +1,16 @@
+
+.footer{
+    background-color: rgb(0, 0, 0);
+    width: 100%;
+    padding: 2rem 0;   
+    display: flex;
+    justify-content: space-around;
+    line-height: 10px;
+    gap: 20px;
+}
+.row-footer h5{
+    color: grey;
+}
+.row-footer p{
+    color: white;
+}

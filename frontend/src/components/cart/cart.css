@@ -1,0 +1,17 @@
+.cart{
+    background-color: rgb(194, 197, 201);
+}
+.mycart{
+    background-color: white;
+    border-bottom: 1px solid #f0f0f0f0;
+    padding: 10px 0 0 15px;
+    font-weight: 500;
+    border: 1px solid  #fefefe;
+    min-width: 400px;
+}
+
+@media screen and (max-width: 720px) {
+    .cart{
+        padding: 20px 10px !important;
+    }
+}
