@@ -7,11 +7,10 @@ const Category = () => {
 
   const navigate = useNavigate();
 
-
   const handleCategory = (value)=>{
     navigate(`/search/${value}`)
   }
-
+  
   return(
       <div className="categorys">
           {

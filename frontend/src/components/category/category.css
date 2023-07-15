@@ -5,7 +5,8 @@
     position: relative;
     margin: 10px auto 0;
     gap: 20px;
-    /* overflow: hidden; */
+    overflow: auto;
+    scrollbar-width: none; 
 }
 
 .category{
@@ -26,6 +27,6 @@
 
 @media screen and (max-width: 820px){
   .categorys{
-     margin: 10px;
+     margin: 10px auto;
 }
 }

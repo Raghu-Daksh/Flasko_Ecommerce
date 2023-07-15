@@ -1,8 +1,11 @@
 .home{
     margin: 20px auto;
-    background: rgb(226, 222, 222);
-    padding: 10px 0;
-}   
+    width: 95%;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+} 
+
 .card .product-img img{ 
     object-fit: cover;
     border-top-right-radius: 20px;

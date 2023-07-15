@@ -1,6 +1,7 @@
 import styled from "@emotion/styled";
 import { Box, Typography } from "@mui/material";
 import { useState } from "react";
+import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 const Component = styled(Box)`
@@ -28,11 +29,8 @@ const Container = styled(Box)`
     font-size: 16px;
     margin-bottom: 20px;   
     font-weight: 600; 
-
   }
 `;
-
-
 const Price = styled(Box)`
   float: right;
 `;
@@ -41,25 +39,15 @@ const Discount = styled(Typography)`
   color: green;
   font-weight: 600;
 `;
-
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
 
 const TotalAmount = ({productListCart}) => {
 
   const navigate = useNavigate();
-
-  let price = 0;
-  let discount = 0;
-
-  if(productListCart?.length>0){
-    productListCart.forEach(item => {
-      price += item.price;
-      discount = discount + 500;
-    });
-  }
-
+  // const {data} = useSelector(state=>state.addToCartReducer); 
+  const [price , setPrice] = useState(0);
   
-  console.log(price-discount);
-
+  let discount = 0; 
   return (
     <Component>
       <Header>
@@ -67,7 +55,13 @@ const TotalAmount = ({productListCart}) => {
       </Header>
       <Container>
         <Typography>
-          Total Price <Price component="span"> ₹ {price}</Price>
+          Total Price 
+          <Price component="span">
+            {`₹${productListCart.reduce(
+                  (acc, item) => acc + item.quantity * item.price,
+                  0
+                )}`}   
+            </Price>
         </Typography>
         <Typography>
           Discount <Price component="span"> ₹ {discount}</Price>

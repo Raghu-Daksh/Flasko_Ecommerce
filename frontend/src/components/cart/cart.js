@@ -5,6 +5,7 @@ import CartItem from "./CartItem";
 import './cart.css'
 import TotalAmount from "./totalAmount";
 import EmptyCart from "./EmptyCart";
+import { useEffect } from "react";
 
 const Container = styled(Grid)`
     padding: 20px 135px ;
@@ -36,10 +37,8 @@ const StyledButton = styled(Button)`
 const Cart = ()=>{
 
     const product = useSelector(state=>state.addToCartReducer);
-
     let productListCart = JSON.parse(localStorage.getItem('cartItems'));
-    console.log(productListCart.length);
-
+ 
     return (
         <>
         {

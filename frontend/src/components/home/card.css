@@ -1,0 +1,34 @@
+.card{
+    width: 250px;
+
+    height: 250px;
+    margin: 20px;
+    background-color: black;
+    color: white;
+}
+.img-sec{
+    height: 150px;
+}
+.detail-sec{
+    text-align: left;
+}
+.detail-sec p{
+    text-align: center;
+    margin: 0;
+}
+.detail-sec h3{
+    margin: 0;
+}
+.item-pricing{
+    display: flex;
+    justify-content: space-between;
+}
+.star-rating{
+    color: white;
+  
+}
+.card .img-sec img{
+    width: 100%; 
+    height: 100%;
+    object-fit: cover;
+}

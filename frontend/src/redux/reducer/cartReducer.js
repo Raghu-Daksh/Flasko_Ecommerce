@@ -2,7 +2,7 @@ import { ADD_TO_CART, REMOVE_TO_CART } from "../constants/constant";
 
 
 
-export const addToCartReducer = (data=[], action)=>{
+export const addToCartReducer = (state = {data:[]}, action)=>{
 
     let objStr = localStorage.getItem('cartItems');
     let cartItem = [];
@@ -10,19 +10,31 @@ export const addToCartReducer = (data=[], action)=>{
         cartItem = JSON.parse(objStr);
     }
     switch(action.type){
-        case ADD_TO_CART :
-            cartItem.push(action.data);
-            localStorage.setItem('cartItems', JSON.stringify(cartItem))
-                return [ ...data, action.data];
+        case ADD_TO_CART :  
+        const item = action.payload;    
+        const isItemExist = state.data.find(
+            (i) => i.product === item.product
+          );
+          if (isItemExist) {
+            return {
+              ...state,
+              data: state.data.map((i) =>
+                 i.product === isItemExist.product ? item : i
+              ),
+            };
+          } else {
+            return {
+              ...state,
+              data: [...state.data, item],
+            };
+          }
         case REMOVE_TO_CART:
-            console.log(action._id);
-            console.log(JSON.parse(objStr));
-            const remaningItems = cartItem.filter(item=>item._id !== action._id);
-            console.log(remaningItems);
-            localStorage.setItem('cartItems', JSON.stringify(remaningItems))
-            console.log(JSON.parse(objStr));
-            return [...remaningItems];
+          return {
+            ...state,
+             data :state.data.filter(item=>item.product !== action.id)
+          }
+          
         default :   
-            return data
+            return state
     }
 }

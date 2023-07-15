@@ -1,13 +1,14 @@
 import {
-    GET_PRODUCTS_FAIL,
+  GET_PRODUCTS_FAIL,
   GET_PRODUCT_DETAILS_FAIL,
   GET_PRODUCT_DETAILS_REQUEST,
   SET_PRODUCT_DETAILS_SUCCESS,
   GET_PRODUCT_DETAILS_SUCCESS,
   SET_PRODUCT_LIST,
-
   SET_SEARCH_PRODUCTS,
   PRODUCT_LIST,
+  GET_SORT_PRODUCTS_SUCCESS,
+  GET_FILTER_PRODUCTS_SUCCESS,
 } from "../constants/constant";
 
 // export const displayProductsReducer = (data=[], action)=>{
@@ -31,13 +32,30 @@ import {
 //             return state
 //     }
 // }
-
-export const displayProductsReducer = (state = { products: []}, action) => {
+export const displayProductsReducer = (state = { products: [] }, action) => {
   switch (action.type) {
     case PRODUCT_LIST:
       return { products: action.payload };
-    case GET_PRODUCTS_FAIL  :
+    case GET_PRODUCTS_FAIL:
       return { error: action.payload };
+    default:
+      return state;
+  }
+};
+export const sortProductsReducer = (state = { products: [] }, action) => {
+  
+  switch (action.type) {
+    case GET_SORT_PRODUCTS_SUCCESS:
+      return { products: action.payload };
+    default:
+      return state;
+  }
+};
+export const filterProductsReducer = (state = { products: [] }, action) => {
+  
+  switch (action.type) {
+    case GET_FILTER_PRODUCTS_SUCCESS:
+      return { products: action.payload };
     default:
       return state;
   }
@@ -60,6 +78,7 @@ export const getProductDetailsReducer = (state = { product: {} }, action) => {
 };
 export const searchProductReducer = (result = [], action) => {
   console.log(action.type);
+  console.log(result);
   switch (action.type) {
     case SET_SEARCH_PRODUCTS:
       console.log(action.result);

@@ -4,13 +4,10 @@ import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import { payUsingPaytm } from "../../service/api";
 import { post } from "../../utils/paytm";
+import { useEffect } from "react";
 
 const ActionItem = ({ product }) => {
   const dispatch = useDispatch();
-
-  const addItemToCart = () => {
-    dispatch(addToCartAction(product));
-  };
 
   const { images } = product;
   console.log(images);
@@ -29,15 +26,6 @@ const ActionItem = ({ product }) => {
       items: 1,
     },
   };
-
-  // const buyNow = ()=>{
-  //   let response = payUsingPaytm({amount: 500, email: 'raghudaksh9@gmail.com'});
-  //   let information = {
-  //     action: 'https://securegw-stage.paytm.in/order/process',
-  //     params : response
-  //   }
-  //   post(information);
-  // }
 
   return (
     <>
@@ -64,12 +52,16 @@ const ActionItem = ({ product }) => {
         </Carousel>
       </div>
       <div className="product-details-row-1-btns">
+    
+    
         <button
           className="product-details-row-1-btn add-to-cart-btn"
-          onClick={() => addItemToCart()}
+          onClick={() => dispatch(addToCartAction(product._id, 1))}
         >
           Add to cart
         </button>
+
+    
         <button className="product-details-row-1-btn buy-now-btn" >
           Buy Now
         </button>

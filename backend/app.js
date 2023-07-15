@@ -4,6 +4,7 @@ const router = require('./routes/route');
 const bodyParser = require('body-parser');
 const user = require('./db/user');
 const products = require('./db/product')
+require('dotenv').config();
 require('./db/config'); 
 const jwt = require('jsonwebtoken');
 

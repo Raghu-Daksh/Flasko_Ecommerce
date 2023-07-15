@@ -9,7 +9,6 @@ import Login from "../login/Login";
 import PowerSettingsNewIcon from '@mui/icons-material/PowerSettingsNew';
 import { useDispatch } from "react-redux";
 import { SearchProductsAction } from "../../redux/action/productAction";
-import styled from "@emotion/styled";
 
 const Header = ()=>{
     const navigate = useNavigate();
@@ -84,7 +83,7 @@ const Header = ()=>{
                     <Link to='/about' style={{textDecoration: 'none', color:' white', fontSize:'17px'}} > <p style={{marginTop:'14px '}} >Abut Us</p></Link>
                 </div>
                 <div className="nav-list">
-                    <Link to='/              ' style={{textDecoration: 'none', color:' white', fontSize:'17px'}} > <p style={{marginTop:'14px '}} >Contact Us</p></Link>
+                    <Link to='/products' style={{textDecoration: 'none', color:' white', fontSize:'17px'}} > <p style={{marginTop:'14px '}} >Products</p></Link>
                 </div>
                 <Login open={open} setOpen={setOpen} getData={getData} />
             </div>

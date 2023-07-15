@@ -2,7 +2,8 @@ import styled from "@emotion/styled";
 import { Box, Typography } from "@mui/material";
 import GroupedButton from "./buttonGroup";
 import { useDispatch } from "react-redux";
-import { removeToCartAction } from "../../redux/action/cartAction";
+import { addToCartAction, removeToCartAction } from "../../redux/action/cartAction";
+import { useEffect, useState } from "react";
 
 const LeftComponent = styled(Box)`
     margin:0;
@@ -36,13 +37,53 @@ const Remove = styled(Typography)`
 
 const CartItem = ({item})=>{
 
+    let productListCart = JSON.parse(localStorage.getItem('cartItems'));
+    // let [decItem, setDecItem] = useState(1);
+    // let [incItem, setIncItem] = useState(1);
     const dispatch = useDispatch();
+    console.log(item);
+    let decreaseQuantity = ()=>{
+ 
+        if(item?.quantity >=2 ){
+            let newQty = item?.quantity - 1;
+            dispatch(addToCartAction(item?.product, newQty));
+        }
+        //  if(incItem==0){
+        //   let remaningItems =  productListCart.filter((data)=>{
+        //        return  data._id !== item._id
+        //   })
+        //   console.log(remaningItems);
+        // localStorage.setItem('cartItems', JSON.stringify(remaningItems))
+        // }
+    }
+
+    let increaseQuantity = ()=>{
+        // alert('item added')
+        let newQty = item?.quantity + 1 ;
+        dispatch(addToCartAction(item?.product, newQty));
+        // console.log('item added', newQty, item?.product)
+    }
 
     return(
         <Container>
             <LeftComponent>
-                <Image src={item?.thumbnail}  />
-                <GroupedButton />
+                <Image src={item?.image}  />
+                <div className="cartInput">
+                    <button
+                      onClick={
+                        decreaseQuantity
+                      }
+                    >
+                      -
+                    </button>
+                    <input type="number" value={item?.quantity} readOnly />
+                    <button
+                      onClick={increaseQuantity
+                      }
+                    >
+                      +
+                    </button>
+                  </div>
             </LeftComponent>
             <RightComponent>
                 <p>{item?.description}</p>
@@ -50,7 +91,7 @@ const CartItem = ({item})=>{
                 <p className="ratings" >
                     <span> <ion-icon name="star"></ion-icon>4.2</span> ratings
                 </p>
-                <Remove onClick={()=>dispatch(removeToCartAction(item?._id))} variant="h6">Remove </Remove>
+                <Remove onClick={()=>dispatch(removeToCartAction(item?.product))} variant="h6">Remove </Remove>
             </RightComponent>
         </Container>
     )
